@@ -8,20 +8,7 @@ export default function App() {
     const [dice, setDice] = React.useState(allNewDice())
     const [tenzies, setTenzies] = React.useState(false)
     const [count,setCount]= React.useState(0)
-    const [hr,sethr]= React.useState(0)
-    const [min,setmin]= React.useState(0)
-    const [sec,setsec]= React.useState(0)
-   
-    const date1=new Date()
- const h =date1.getHours() 
-  const m =date1.getMinutes() 
-       const s=date1.getSeconds() 
-     function time(){
-       sethr(h) 
-        setmin(m)
-        setsec(s)
-     } 
-     console.log(hr)
+    
     React.useEffect(() => {
         const allHeld = dice.every(die => die.isHeld)
         const firstValue = dice[0].value
@@ -64,9 +51,7 @@ export default function App() {
     
     function holdDice(id) {
         setDice(oldDice => oldDice.map(die => {
-            return die.id === id ? 
-                {...die, isHeld: !die.isHeld} :
-                die
+            return die.id === id ?  {...die, isHeld: !die.isHeld} : die
         }))
     }
     
@@ -78,15 +63,11 @@ export default function App() {
             holdDice={() => holdDice(die.id)}
         />
     ))
-   
-  
-    
-    return (
+   return (
         <main>
             {tenzies && <Confetti />}
             <h1 className="title">Tenzies</h1>
             <p>Number of rolls ={count}</p>
-            <p>time=`${hr} : ${min} :${sec}`</p>
             <p className="instructions">Roll until all dice are the same. 
             Click each die to freeze it at its current value between rolls.</p>
             <div className="dice-container">
